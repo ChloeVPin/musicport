@@ -1,0 +1,267 @@
+:root {
+  --bg: #101214;
+  --bg-panel: #17191e;
+  --bg-hover: #1d2026;
+  --bg-active: #23272f;
+  --border: #23262d;
+  --text: #e6e8ea;
+  --text-dim: #9aa0a8;
+  --accent: #4d9fff;
+  --accent-text: #0f3d6e;
+  --danger: #e5534b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-width: 0;
+}
+
+/* ---- title bar ------------------------------------------------------------ */
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+
+.titlebar h1 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.device {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: auto;
+  min-width: 0;
+}
+
+.dev-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 18rem;
+}
+
+.dev-meta {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.dev-idle {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.dev-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34c759;
+}
+
+/* ---- content -------------------------------------------------------------- */
+
+.content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.status {
+  margin-left: auto;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- controls -------------------------------------------------------------- */
+
+button {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--bg-active);
+  color: var(--text);
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+button:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+input[type="search"] {
+  background: var(--bg-active);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.9rem;
+  width: clamp(10rem, 28vw, 18rem);
+  min-width: 10rem;
+}
+
+input[type="search"]:disabled {
+  opacity: 0.45;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+/* ---- tracks ---------------------------------------------------------------- */
+
+.tracks {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+.track-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.track-table th,
+.track-table td {
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-panel);
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+
+.track-table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.track-table tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+/* fixed layout - header defines widths so long titles truncate */
+.col-check {
+  width: 2.25rem;
+  text-align: center;
+}
+
+.col-check input {
+  display: block;
+  margin: 0 auto;
+}
+
+.col-title {
+  width: 30%;
+}
+
+.col-artist {
+  width: 24%;
+}
+
+.col-album {
+  width: 22%;
+}
+
+.col-year {
+  width: 4.25rem;
+}
+
+.col-length {
+  width: 4.5rem;
+}
+
+.col-size {
+  width: 6rem;
+}
+
+.col-year,
+.col-length,
+.col-size {
+  text-align: right;
+  color: var(--text-dim);
+}
+
+.track-table th.col-year,
+.track-table th.col-length,
+.track-table th.col-size {
+  text-align: right;
+}
+
+/* empty banner overlays area - hidden has to override display */
+.empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-dim);
+  margin: 0;
+  pointer-events: none;
+}
+
+.empty[hidden] {
+  display: none;
+}

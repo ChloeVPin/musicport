@@ -1,0 +1,15 @@
+# Rust
+/target
+**/*.rs.bk
+**/.local-lib
+
+# Node / Vite frontend (npm workspaces hoist to the root)
+node_modules
+ui/dist
+npm-debug.log*
+
+# Tauri generated (local)
+crates/desktop/gen
+
+# macOS
+.DS_Store
