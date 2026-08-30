@@ -33,6 +33,24 @@
       "icons/128x128@2x.png",
       "icons/icon.png",
       "icons/icon.ico"
-    ]
+    ],
+    "linux": {
+      "deb": {
+        "depends": [
+          "libwebkit2gtk-4.1-0",
+          "libgtk-3-0",
+          "libayatana-appindicator3-1 | libappindicator3-1",
+          "libimobiledevice6 | libimobiledevice-1.0-6",
+          "libplist3 | libplist4 | libplist-2.0-3 | libplist-2.0-4",
+          "libusbmuxd6 | libusbmuxd-2.0-6",
+          "libssl3 | libssl1.1"
+        ]
+      }
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      }
+    }
   }
 }
